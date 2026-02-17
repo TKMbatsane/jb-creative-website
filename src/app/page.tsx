@@ -82,7 +82,7 @@ export default function Home() {
                             />
                             <button
                                 type="submit"
-                                className="bg-gradient-to-r from-[#636b2f] to-orange-500 text-black px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/50 transition"
+                                className="bg-[#636b2f] text-black px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/50 transition"
                             >
                                 Subscribe
                             </button>
@@ -95,17 +95,17 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div>
                             <p className="text-zinc-500 text-sm mb-2">EMAIL</p>
-                            <a href="mailto:hello@jbcreative.com" className="text-white font-semibold hover:text-amber-400 transition">
-                                hello@jbcreative.com
+                            <a href="mailto:jbcreativecinema@gmail.com" className="text-white font-semibold hover:text-amber-400 transition">
+                                jbcreativecinema@gmail.com
                             </a>
                         </div>
                         <div>
                             <p className="text-zinc-500 text-sm mb-2">PHONE</p>
-                            <p className="text-white font-semibold">+1 (555) 123-4567</p>
+                            <p className="text-white font-semibold">+27 76 130 2496</p>
                         </div>
                         <div>
                             <p className="text-zinc-500 text-sm mb-2">LOCATION</p>
-                            <p className="text-white font-semibold">Your City, State</p>
+                            <p className="text-white font-semibold">Mbombela Valencia Park Mbombela, South Africa 1200</p>
                         </div>
                     </div>
                 </div>
