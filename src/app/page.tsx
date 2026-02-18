@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
 import Gallery from '../components/Gallery';
 import ServiceCard from '../components/ServiceCard';
-import Footer from '../components/Footer';
+
 
 export default function Home() {
     const [email, setEmail] = useState('');
@@ -119,7 +119,7 @@ export default function Home() {
                 </div>
             </section>
 
-            
+
         </div>
     );
 }
