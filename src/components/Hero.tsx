@@ -31,11 +31,11 @@ export default function Hero() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/contact" className="bg-[#636b2f] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition">
+                    <Link href="#contact" className="bg-[#636b2f] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition">
                         Book a Session
                     </Link>
 
-                    <Link href="/portfolio" className="border border-white px-8 py-4 rounded-lg font-semibold hover:border-[#636b2f] transition">
+                    <Link href="#portfolio" className="border border-white px-8 py-4 rounded-lg font-semibold hover:border-[#636b2f] transition">
                         View Portfolio
                     </Link>
                 </div>
