@@ -5,6 +5,8 @@ import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
 import Gallery from '../components/Gallery';
 import ServiceCard from '../components/ServiceCard';
+import CounterSection from '../components/CounterSection';
+
 
 
 export default function Home() {
@@ -24,7 +26,7 @@ export default function Home() {
             <NavBar />
 
             <Hero />
-
+            <CounterSection />
             <Gallery />
 
             <section id="services" className="py-20 px-6 bg-zinc-950">
@@ -95,7 +97,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div>
                             <p className="text-zinc-500 text-sm mb-2">EMAIL</p>
-                            <a href="mailto:jbcreativecinema@gmail.com" className="text-white font-semibold hover:text-amber-400 transition">
+                            <a href="mailto:jbcreativecinema@gmail.com" className="text-white font-semibold hover:text-[#636b2f] transition">
                                 jbcreativecinema@gmail.com
                             </a>
                         </div>
