@@ -42,13 +42,13 @@ export default function StructuredData() {
         "sameAs": [
             "https://web.facebook.com/profile.php?id=100083672318103",
             "https://www.instagram.com/jbcreative_cinema",
-            "https://www.tiktok.com/@jb.creative.cinem"
+            "https://www.tiktok.com/@jb.creative.cinema"
 
         ]
     };
 
     return (
-        <Script type="application/ld+json">
+        <Script id="structured-data" type="application/ld+json">
             {JSON.stringify(schema)}
         </Script>
     );
