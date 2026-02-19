@@ -9,7 +9,7 @@ type Props = {
 
 export default function ServiceCard({ icon, title, description, features = [] }: Props) {
     return (
-        <div className="bg-black p-8 rounded-lg border border-zinc-800 hover:border-amber-400 transition">
+        <div className="bg-black p-8 rounded-lg border border-zinc-800 hover:border-[#636b2f] transition">
             <div className="text-4xl mb-4">{icon}</div>
             <h3 className="text-2xl font-bold mb-4">{title}</h3>
             <p className="text-zinc-400 mb-6">{description}</p>

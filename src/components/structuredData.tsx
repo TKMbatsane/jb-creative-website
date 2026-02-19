@@ -40,9 +40,10 @@ export default function StructuredData() {
             }
         ],
         "sameAs": [
-            "https://www.facebook.com/yourpage",
-            "https://www.instagram.com/yourpage",
-            "https://www.linkedin.com/in/yourpage"
+            "https://web.facebook.com/profile.php?id=100083672318103",
+            "https://www.instagram.com/jbcreative_cinema",
+            "https://www.tiktok.com/@jb.creative.cinem"
+
         ]
     };
 
