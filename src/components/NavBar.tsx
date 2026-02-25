@@ -44,7 +44,7 @@ export default function NavBar() {
 
         <nav
             ref={menuRef}
-            className="fixed top-0 w-full bg-[#636b2f] z-50 border-b border-zinc-800"
+            className="fixed top-0 w-full bg-[#0D3239] z-50 border-b border-zinc-800"
         >
 
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
