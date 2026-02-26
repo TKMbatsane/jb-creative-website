@@ -54,7 +54,7 @@ export default function Gallery() {
     }, [emblaApi]);
 
     return (
-        <section className="py-24 px-6 bg-black text-white">
+        <section id="portfolio" className="py-24 px-6 bg-black text-white">
 
             <div className="max-w-7xl mx-auto">
 
