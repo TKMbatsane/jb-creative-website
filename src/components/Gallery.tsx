@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
 const images = [{ src: '/images/jbImages/gallery1.jpeg', alt: 'Portrait 1' },
@@ -21,9 +21,12 @@ const images = [{ src: '/images/jbImages/gallery1.jpeg', alt: 'Portrait 1' },
 
 export default function Gallery() {
 
-    const [selected, setSelected] = useState<{ src: string; alt: string } | null>(null);
-    const [open, setOpen] = useState(false);
+    // index of the currently highlighted/selected image (used both in carousel and modal)
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [open, setOpen] = useState(false);
+
+    // helper to grab the current image object
+    const selected = images[selectedIndex];
 
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
@@ -42,6 +45,28 @@ export default function Gallery() {
         emblaApi.on('select', onSelect);
         onSelect();
     }, [emblaApi]);
+
+    // keyboard handlers for modal navigation (memoized so effect deps stay stable)
+    const prevImage = useCallback(() => {
+        setSelectedIndex((current) => (current - 1 + images.length) % images.length);
+    }, []);
+
+    const nextImage = useCallback(() => {
+        setSelectedIndex((current) => (current + 1) % images.length);
+    }, []);
+
+    useEffect(() => {
+        if (!open) return;
+
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'Escape') setOpen(false);
+        };
+
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [open, prevImage, nextImage]);
 
     useEffect(() => {
         if (!emblaApi) return;
@@ -81,7 +106,7 @@ export default function Gallery() {
                                     <div
                                         className="relative h-[450px] rounded-xl overflow-hidden cursor-pointer shadow-2xl"
                                         onClick={() => {
-                                            setSelected(image);
+                                            setSelectedIndex(index);
                                             setOpen(true);
                                         }}
                                     >
@@ -118,15 +143,23 @@ export default function Gallery() {
 
 
             {/* MODAL */}
-            {open && selected && (
+            {open && (
                 <div
                     onClick={() => setOpen(false)}
                     className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
                 >
                     <div
-                        className="relative max-w-6xl w-full"
+                        className="relative max-w-xl w-180 flex items-center justify-center"
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {/* left arrow */}
+                        <button
+                            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                            className="absolute left-2 text-white text-3xl p-2 bg-black/40 rounded-full hover:bg-[#d4af37] transition"
+                        >
+                            ‹
+                        </button>
+
                         <Image
                             src={selected.src}
                             alt={selected.alt}
@@ -134,6 +167,14 @@ export default function Gallery() {
                             height={1000}
                             className="w-full h-auto rounded-xl"
                         />
+
+                        {/* right arrow */}
+                        <button
+                            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                            className="absolute right-2 text-white text-3xl p-2 bg-black/40 rounded-full hover:bg-[#d4af37] transition"
+                        >
+                            ›
+                        </button>
 
                         <button
                             onClick={() => setOpen(false)}
