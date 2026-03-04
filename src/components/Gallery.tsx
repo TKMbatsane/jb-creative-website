@@ -79,7 +79,7 @@ export default function Gallery() {
     }, [emblaApi]);
 
     return (
-        <section id="portfolio" className="py-24 px-6 bg-black text-white">
+        <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
 
             <div className="max-w-7xl mx-auto">
 

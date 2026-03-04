@@ -13,7 +13,7 @@ type Props = {
 export default function TeamCard({ name, role, image, bio }: Props) {
     const [imgSrc, setImgSrc] = useState(image);
     return (
-        <div className="bg-zinc-900 p-6 rounded-lg border border-zinc-800 hover:border-amber-400 transition text-center">
+        <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-zinc-800 hover:border-amber-400 transition text-center text-black dark:text-white">
             <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
                     src={imgSrc}
@@ -21,7 +21,7 @@ export default function TeamCard({ name, role, image, bio }: Props) {
                     width={128}
                     height={128}
                     className="object-cover w-full h-full"
-                    onError={()=>setImgSrc("/images/JbLogo.jpeg")}
+                    onError={() => setImgSrc("/images/JbLogo.jpeg")}
                 />
             </div>
             <h3 className="text-xl font-bold">{name}</h3>

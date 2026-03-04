@@ -70,14 +70,14 @@ export default function CounterCard({ icon, value, label }: Props) {
     return (
         <div
             ref={ref}
-            className="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center hover:border-[#636b2f] transition duration-300"
+            className="bg-[#FAEBD7] dark:bg-gray-900 border-zinc-800 rounded-xl p-8 text-center hover:border-[#636b2f] transition duration-300 text-black dark:text-white"
         >
 
             <div className="text-4xl mb-4">
                 {icon}
             </div>
 
-            <div className="text-4xl font-bold text-white">
+            <div className="text-4xl font-bold text-black dark:text-white">
                 {count.toLocaleString()}+
             </div>
 
