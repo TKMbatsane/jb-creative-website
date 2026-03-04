@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-black dark:text-white bg-white dark:bg-gray-800`}>
                 <NavBar />
                 <StructuredData />
                 {children}

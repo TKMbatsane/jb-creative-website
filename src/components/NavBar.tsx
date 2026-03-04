@@ -52,7 +52,7 @@ export default function NavBar() {
 
         <nav
             ref={menuRef}
-            className="fixed top-0 w-full bg-[#0D3239] z-50 border-b border-zinc-800"
+            className="fixed top-0 w-full bg-[#FFFAFA] dark:bg-gray-900 z-50 border-b border-zinc-800 text-black dark:text-white"
         >
 
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center md:justify-center relative">
@@ -74,11 +74,11 @@ export default function NavBar() {
                     className="md:hidden flex flex-col gap-1 absolute right-6"
                 >
 
-                    <span className={`w-6 h-0.5 bg-white transition ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+                    <span className={`w-6 h-0.5 bg-black dark:bg-white transition ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
 
-                    <span className={`w-6 h-0.5 bg-white transition ${isOpen ? 'opacity-0' : ''}`} />
+                    <span className={`w-6 h-0.5 bg-black dark:bg-white transition ${isOpen ? 'opacity-0' : ''}`} />
 
-                    <span className={`w-6 h-0.5 bg-white transition ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+                    <span className={`w-6 h-0.5 bg-black dark:bg-white transition ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
 
                 </button>
 
@@ -114,7 +114,7 @@ export default function NavBar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={label}
-                                className="text-white hover:text-[#d3d3d3] transition text-xl"
+                                className="text-black dark:text-white hover:text-[#d3d3d3] transition text-xl"
                             >
                                 <Icon />
                             </a>
@@ -128,7 +128,7 @@ export default function NavBar() {
             {/* Mobile Menu */}
             {isOpen && (
 
-                <div className="md:hidden bg-[#636b2f] border-t border-zinc-800">
+                <div className="md:hidden bg-white dark:bg-gray-800 border-t border-zinc-800 text-black dark:text-white">
 
                     <div className="flex flex-col px-6 py-4 gap-4">
 
@@ -151,7 +151,7 @@ export default function NavBar() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={label}
-                                    className="text-white hover:text-[#d3d3d3] transition text-2xl"
+                                    className="text-black dark:text-white hover:text-[#d3d3d3] transition text-2xl"
                                 >
                                     <Icon />
                                 </a>

@@ -6,29 +6,29 @@ export default function CounterSection() {
 
     const stats = [
         {
-            icon: '🚀',
+            icon: '🎬',
             value: 2451,
             label: 'Projects Delivered'
         },
         {
-            icon: '✓',
+            icon: '😊',
             value: 2300,
             label: 'Happy Clients'
         },
         {
-            icon: '📞',
+            icon: '📸',
             value: 2780,
             label: 'Sessions Completed'
         },
         {
-            icon: '❤️',
+            icon: '✅',
             value: 2984,
             label: 'Photos Delivered'
         }
     ];
 
     return (
-        <section className="bg-black py-20 px-6">
+        <section className="bg-[#FFFAFA] dark:bg-gray-800 py-20 px-6 text-black dark:text-white">
 
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
 
