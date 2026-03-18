@@ -2,10 +2,8 @@
 
 A modern, responsive photography and videography website built to showcase visual work, attract clients, and enable seamless booking experiences.
 
-🚀 Live Demo
-(Add your deployed link here – e.g. Vercel)
-📂 GitHub Repository
-(Add your GitHub repo link here)
+
+
 🧰 Tech Stack
 
 Next.js (App Router)
