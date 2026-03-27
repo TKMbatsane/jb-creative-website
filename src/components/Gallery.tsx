@@ -130,6 +130,7 @@ export default function Gallery() {
                         <button
                             key={index}
                             onClick={() => emblaApi?.scrollTo(index)}
+                            suppressHydrationWarning
                             className={`h-2 rounded-full transition-all duration-300
               ${index === selectedIndex
                                     ? 'w-10 bg-[#d4af37]'
@@ -155,6 +156,7 @@ export default function Gallery() {
                         {/* left arrow */}
                         <button
                             onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                            suppressHydrationWarning
                             className="absolute left-2 text-white text-3xl p-2 bg-black/40 rounded-full hover:bg-[#d4af37] transition"
                         >
                             ‹
@@ -171,6 +173,7 @@ export default function Gallery() {
                         {/* right arrow */}
                         <button
                             onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                            suppressHydrationWarning
                             className="absolute right-2 text-white text-3xl p-2 bg-black/40 rounded-full hover:bg-[#d4af37] transition"
                         >
                             ›
@@ -178,6 +181,7 @@ export default function Gallery() {
 
                         <button
                             onClick={() => setOpen(false)}
+                            suppressHydrationWarning
                             className="absolute top-4 right-4 rounded-full bg-black/60 p-3 text-white hover:bg-[#d4af37] hover:text-black transition"
                         >
                             ✕
