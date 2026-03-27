@@ -63,7 +63,7 @@ export default function About() {
                     </p>
 
                     <p className="text-black dark:text-white text-lg leading-relaxed">
-                        Whether it's a corporate headshot, portrait session, wedding, or event coverage,
+                        Whether it&apos;s a corporate headshot, portrait session, wedding, or event coverage,
                         we deliver visuals that are timeless and uniquely yours.
                     </p>
 

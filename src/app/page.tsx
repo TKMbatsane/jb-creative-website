@@ -80,10 +80,12 @@ export default function Home() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
+                                suppressHydrationWarning
                                 className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400"
                             />
                             <button
                                 type="submit"
+                                suppressHydrationWarning
                                 className="bg-[#636b2f] text-black px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/50 transition"
                             >
                                 Subscribe
