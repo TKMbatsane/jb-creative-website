@@ -1,26 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
 import Gallery from '../components/Gallery';
 import ServiceCard from '../components/ServiceCard';
 import CounterSection from '../components/CounterSection';
+import BookingForm from '../components/BookingForm';
 
 
 
 export default function Home() {
-    const [email, setEmail] = useState('');
-    const [subscribed, setSubscribed] = useState(false);
-
-
-    const handleSubscribe = (e: React.FormEvent) => {
-        e.preventDefault();
-        setSubscribed(true);
-        setEmail('');
-        setTimeout(() => setSubscribed(false), 3000);
-    };
-
     return (
         <div className="min-h-screen text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
             <NavBar />
@@ -69,32 +59,10 @@ export default function Home() {
 
             <section id="contact" className="py-20 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
                 <div className="max-w-2xl mx-auto">
-                    <h2 className="text-5xl font-bold mb-4 text-center">Ready to Shine?</h2>
-                    <p className="text-zinc-400 text-center text-lg mb-12">Get in touch to book your session or learn more about our services.</p>
+                    <h2 className="text-5xl font-bold mb-4 text-center">Book Your Session</h2>
+                    <p className="text-zinc-400 text-center text-lg mb-12">Ready to shine? Fill out the form below and we'll get in touch to confirm your booking.</p>
 
-                    <form onSubmit={handleSubscribe} className="mb-12">
-                        <div className="flex gap-3 mb-4">
-                            <input
-                                type="email"
-                                placeholder="your@email.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                suppressHydrationWarning
-                                className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400"
-                            />
-                            <button
-                                type="submit"
-                                suppressHydrationWarning
-                                className="bg-[#636b2f] text-black px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/50 transition"
-                            >
-                                Subscribe
-                            </button>
-                        </div>
-                        {subscribed && (
-                            <p className="text-green-400 text-center text-sm">Thanks for subscribing!</p>
-                        )}
-                    </form>
+                    <BookingForm />
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div>
