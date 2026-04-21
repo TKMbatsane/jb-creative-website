@@ -128,7 +128,7 @@ export default function Gallery() {
     }
 
     return (
-        <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#252525]">
+        <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
 
             <div className="max-w-7xl mx-auto">
 

@@ -217,7 +217,7 @@ export default function BookingForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#636b2f] hover:bg-[#7a8239] text-black px-6 py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-orange-500/50"
+                className="mb-6 w-full bg-[#f2b949] hover:bg-[#f2b946] text-black px-6 py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-orange-500/50"
             >
                 {loading ? 'Submitting...' : 'Book Your Session'}
             </button>

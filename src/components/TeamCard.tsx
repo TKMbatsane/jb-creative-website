@@ -13,7 +13,7 @@ type Props = {
 export default function TeamCard({ name, role, image, bio }: Props) {
     const [imgSrc, setImgSrc] = useState(image);
     return (
-        <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-zinc-800 hover:border-amber-400 transition text-center text-black dark:text-white">
+        <div className="bg-white dark:bg-[#252525] p-6 rounded-lg border border-zinc-800 hover:border-amber-400 transition text-center text-black dark:text-white">
             <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
                     src={imgSrc}

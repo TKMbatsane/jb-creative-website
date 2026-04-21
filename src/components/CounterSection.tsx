@@ -28,7 +28,7 @@ export default function CounterSection() {
     ];
 
     return (
-        <section className="bg-[#FFFAFA] dark:bg-[#252525] py-20 px-6 text-black dark:text-white">
+        <section className="bg-[#FFFAFA] dark:bg-[#000000] py-20 px-6 text-black dark:text-white">
 
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
 

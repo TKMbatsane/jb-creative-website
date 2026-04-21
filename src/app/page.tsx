@@ -12,14 +12,14 @@ import BookingForm from '../components/BookingForm';
 
 export default function Home() {
     return (
-        <div className="min-h-screen text-black dark:text-white bg-[#FFFAFA] dark:bg-[#252525]">
+        <div className="min-h-screen text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
             <NavBar />
 
             <Hero />
             <CounterSection />
             <Gallery />
 
-            <section id="services" className="py-20 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#252525]">
+            <section id="services" className="py-20 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-5xl font-bold mb-16 text-center">Our Services</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -57,7 +57,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id="contact" className="py-20 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#252525]">
+            <section id="contact" className="py-20 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
                 <div className="max-w-2xl mx-auto">
                     <h2 className="text-5xl font-bold mb-4 text-center">Book Your Session</h2>
                     <p className="text-zinc-400 text-center text-lg mb-12">Ready to shine? Fill out the form below and we'll get in touch to confirm your booking.</p>
