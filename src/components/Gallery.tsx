@@ -4,26 +4,42 @@ import Image from 'next/image';
 import { useEffect, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
-const images = [{ src: '/images/jbImages/gallery1.jpeg', alt: 'Portrait 1' },
-{ src: '/images/jbImages/gallery2.jpeg', alt: 'Portrait 2' },
-{ src: '/images/jbImages/gallery3.jpeg', alt: 'Portrait 3' },
-{ src: '/images/jbImages/gallery4.jpeg', alt: 'Portrait 4' },
-{ src: '/images/jbImages/gallery5.jpeg', alt: 'Portrait 5' },
-{ src: '/images/jbImages/gallery6.JPG', alt: 'Portrait 6' },
-{ src: '/images/jbImages/gallery7.JPG', alt: 'Portrait 7' },
-{ src: '/images/jbImages/gallery8.JPG', alt: 'Portrait 8' },
-{ src: '/images/jbImages/gallery9.JPG', alt: 'Portrait 9' },
-{ src: '/images/jbImages/gallery10.JPG', alt: 'Portrait 10' },
-{ src: '/images/jbImages/gallery11.JPG', alt: 'Portrait 11' },
-{ src: '/images/jbImages/gallery12.JPG', alt: 'Portrait 12' },
-{ src: '/images/jbImages/gallery13.JPG', alt: 'Portrait 13' },
-];
+interface GalleryImage {
+    src: string;
+    alt: string;
+    publicId?: string;
+}
 
 export default function Gallery() {
+    const [images, setImages] = useState<GalleryImage[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     // index of the currently highlighted/selected image (used both in carousel and modal)
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [open, setOpen] = useState(false);
+
+    // Fetch images from Cloudinary API
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const response = await fetch('/api/images');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch images');
+                }
+                const data = await response.json();
+                // Handle both array format and object format with images property
+                const imagesList = Array.isArray(data) ? data : data.images || [];
+                setImages(imagesList);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to load images');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchImages();
+    }, []);
 
     // helper to grab the current image object
     const selected = images[selectedIndex];
@@ -49,11 +65,11 @@ export default function Gallery() {
     // keyboard handlers for modal navigation (memoized so effect deps stay stable)
     const prevImage = useCallback(() => {
         setSelectedIndex((current) => (current - 1 + images.length) % images.length);
-    }, []);
+    }, [images.length]);
 
     const nextImage = useCallback(() => {
         setSelectedIndex((current) => (current + 1) % images.length);
-    }, []);
+    }, [images.length]);
 
     useEffect(() => {
         if (!open) return;
@@ -78,8 +94,41 @@ export default function Gallery() {
         return () => clearInterval(autoplay);
     }, [emblaApi]);
 
+    if (loading) {
+        return (
+            <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
+                <div className="max-w-7xl mx-auto text-center">
+                    <h2 className="text-5xl font-bold mb-12">Featured Work</h2>
+                    <p>Loading gallery...</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
+                <div className="max-w-7xl mx-auto text-center">
+                    <h2 className="text-5xl font-bold mb-12">Featured Work</h2>
+                    <p>Error loading gallery: {error}</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (images.length === 0) {
+        return (
+            <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
+                <div className="max-w-7xl mx-auto text-center">
+                    <h2 className="text-5xl font-bold mb-12">Featured Work</h2>
+                    <p>No images found in gallery.</p>
+                </div>
+            </section>
+        );
+    }
+
     return (
-        <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
+        <section id="portfolio" className="py-24 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#252525]">
 
             <div className="max-w-7xl mx-auto">
 
