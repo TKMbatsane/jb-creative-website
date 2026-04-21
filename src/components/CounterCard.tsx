@@ -70,7 +70,7 @@ export default function CounterCard({ icon, value, label }: Props) {
     return (
         <div
             ref={ref}
-            className="bg-[#FAEBD7] dark:bg-gray-900 border-zinc-800 rounded-xl p-8 text-center hover:border-[#636b2f] transition duration-300 text-black dark:text-white"
+            className="bg- white dark:bg-[#252525] border border-zinc-900 rounded-xl p-8 text-center hover:border-[#636b2f] transition duration-300 text-black dark:text-white"
         >
 
             <div className="text-4xl mb-4">

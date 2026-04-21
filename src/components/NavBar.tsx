@@ -52,7 +52,7 @@ export default function NavBar() {
 
         <nav
             ref={menuRef}
-            className="fixed top-0 w-full bg-[#FFFAFA] dark:bg-[#000000] z-50 border-b border-zinc-800 text-black dark:text-white"
+            className="fixed top-0 w-full bg-[#FFFAFA] dark:bg-[#000000] z-50  text-black dark:text-white"
         >
 
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center md:justify-center relative">
@@ -98,7 +98,7 @@ export default function NavBar() {
                             alt="JB Creative Logo"
                             width={120}
                             height={100}
-                            className="rounded-full transition-transform hover:scale-110"
+                            className="rounded-full transition-transform hover:scale-110 border border-zinc-800"
                         />
                     </Link>
                     <Link href="/about" className="hover:text-[#d3d3d3]">About</Link>

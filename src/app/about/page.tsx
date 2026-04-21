@@ -25,7 +25,7 @@ export default function About() {
 
     return (
 
-        <div className="min-h-screen text-black dark:text-white bg-[#FFFAFA] dark:bg-gray-800">
+        <div className="min-h-screen text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
 
             <NavBar />
 

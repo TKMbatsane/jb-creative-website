@@ -23,7 +23,7 @@ export default function Hero() {
             {/* Content */}
             <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
                 <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-                    Capture Your <span className="text-[#636b2f]">Moments</span>
+                    Capture Your <span className="text-[#f2b949]">Moments</span>
                 </h1>
 
                 <p className="text-xl md:text-2xl mb-8 leading-relaxed">
@@ -31,7 +31,7 @@ export default function Hero() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="#contact" className="bg-[#636b2f] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition">
+                    <Link href="#contact" className="bg-[#f2b949] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition">
                         Book a Session
                     </Link>
 
