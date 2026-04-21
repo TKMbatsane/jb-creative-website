@@ -52,7 +52,7 @@ export default function NavBar() {
 
         <nav
             ref={menuRef}
-            className="fixed top-0 w-full bg-[#FFFAFA] dark:bg-gray-900 z-50 border-b border-zinc-800 text-black dark:text-white"
+            className="fixed top-0 w-full bg-[#FFFAFA] dark:bg-[#000000] z-50 border-b border-zinc-800 text-black dark:text-white"
         >
 
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center md:justify-center relative">
