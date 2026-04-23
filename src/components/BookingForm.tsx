@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 
-const SERVICES = [
-    'Professional Headshots',
-    'Portrait Sessions',
-    'Branding Packages'
-];
+const SERVICES = {
+    'Weddings and Events': ['Weddings', 'Birthday parties', 'Corporate events'],
+    'Portrait': ['Maternity sessions', 'Gender reveal photos', 'Newborn photography', 'Individual shoots'],
+    'Corporate & Product': ['Professional headshots', 'Product photography', 'E-commerce ready']
+};
+
+const SERVICE_NAMES = Object.keys(SERVICES);
 
 // Initialize EmailJS - Replace with your actual IDs
 const EMAILJS_SERVICE_ID = 'service_0vy2lys';
@@ -20,7 +22,8 @@ export default function BookingForm() {
         email: '',
         phone: '',
         bookingDate: '',
-        service: SERVICES[0],
+        service: SERVICE_NAMES[0],
+        category: SERVICES[SERVICE_NAMES[0] as keyof typeof SERVICES][0],
         details: ''
     });
 
@@ -36,10 +39,20 @@ export default function BookingForm() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+
+        if (name === 'service') {
+            // Reset category to the first option of the new service
+            setFormData(prev => ({
+                ...prev,
+                service: value,
+                category: SERVICES[value as keyof typeof SERVICES][0]
+            }));
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -59,6 +72,7 @@ export default function BookingForm() {
                 from_phone: formData.phone,
                 booking_date: formData.bookingDate,
                 service: formData.service,
+                category: formData.category,
                 details: formData.details || 'No additional details provided',
                 to_email: 'mbatsanethabiso@gmail.com'
             };
@@ -80,7 +94,8 @@ export default function BookingForm() {
                     email: '',
                     phone: '',
                     bookingDate: '',
-                    service: SERVICES[0],
+                    service: SERVICE_NAMES[0],
+                    category: SERVICES[SERVICE_NAMES[0] as keyof typeof SERVICES][0],
                     details: ''
                 });
             }
@@ -176,13 +191,35 @@ export default function BookingForm() {
                     onChange={handleChange}
                     className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"
                 >
-                    {SERVICES.map(service => (
+                    {SERVICE_NAMES.map(service => (
                         <option key={service} value={service}>
                             {service}
                         </option>
                     ))}
                 </select>
             </div>
+
+            {/* Category Selection */}
+            {formData.service && (
+                <div>
+                    <label htmlFor="category" className="block text-sm font-medium mb-2">
+                        Select Category *
+                    </label>
+                    <select
+                        id="category"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"
+                    >
+                        {SERVICES[formData.service as keyof typeof SERVICES].map(category => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            )}
 
             {/* Additional Details */}
             <div>
@@ -203,11 +240,10 @@ export default function BookingForm() {
             {/* Message Display */}
             {message && (
                 <div
-                    className={`p-4 rounded-lg ${
-                        message.type === 'success'
-                            ? 'bg-green-900 text-green-100 border border-green-700'
-                            : 'bg-red-900 text-red-100 border border-red-700'
-                    }`}
+                    className={`p-4 rounded-lg ${message.type === 'success'
+                        ? 'bg-green-900 text-green-100 border border-green-700'
+                        : 'bg-red-900 text-red-100 border border-red-700'
+                        }`}
                 >
                     {message.text}
                 </div>
