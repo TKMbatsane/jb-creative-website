@@ -24,33 +24,34 @@ export default function Home() {
                     <h2 className="text-5xl font-bold mb-16 text-center">Our Services</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <ServiceCard
+                            icon="�"
+                            title="Weddings and Events"
+                            description="Capture your special moments. Weddings, birthday parties, and corporate events with professional coverage and beautiful storytelling."
+                            features={[
+                                'Weddings',
+                                'Birthday parties',
+                                'Corporate events',
+                            ]}
+                        />
+                        <ServiceCard
                             icon="📸"
-                            title="Professional Headshots"
-                            description="Perfect for LinkedIn, corporate profiles, and professional portfolios. Studio or on-location sessions available."
+                            title="Portrait"
+                            description="Studio or location-based portraits including maternity, gender reveal, newborn, and individual shoot sessions tailored to your vision."
                             features={[
-                                'Professional styling guidance',
-                                'Multiple outfit changes',
-                                'Retouching included',
+                                'Maternity sessions',
+                                'Gender reveal photos',
+                                'Newborn photography',
+                                'Individual shoots',
                             ]}
                         />
                         <ServiceCard
-                            icon="👥"
-                            title="Portrait Sessions"
-                            description="Individual or group portrait sessions. Ideal for personal branding, actors, models, and professionals."
+                            icon="💼"
+                            title="Corporate & Product"
+                            description="Professional headshots and product photography for e-commerce. Perfect for business profiles and online retail presence."
                             features={[
-                                'Customized backdrops',
-                                'Professional lighting',
-                                'Digital gallery delivery',
-                            ]}
-                        />
-                        <ServiceCard
-                            icon="🎬"
-                            title="Branding Packages"
-                            description="Complete branding photography packages with consistent styling and premium post-production editing."
-                            features={[
-                                'Multiple locations',
-                                'Creative direction',
-                                'Fast turnaround',
+                                'Professional headshots',
+                                'Product photography',
+                                'E-commerce ready',
                             ]}
                         />
                     </div>
