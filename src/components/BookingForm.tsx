@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 
 const SERVICES = {
-    'Weddings and Events': ['Weddings', 'Birthday parties', 'Corporate events'],
-    'Portrait': ['Maternity sessions', 'Gender reveal photos', 'Newborn photography', 'Individual shoots'],
+    'Weddings and Events': ['Wedding', 'Birthday party', 'Corporate event'],
+    'Portrait': ['Maternity session', 'Gender reveal photos', 'Newborn photography', 'Individual shoot'],
     'Corporate & Product': ['Professional headshots', 'Product photography', 'E-commerce ready']
 };
 
@@ -14,6 +14,7 @@ const SERVICE_NAMES = Object.keys(SERVICES);
 // Initialize EmailJS - Replace with your actual IDs
 const EMAILJS_SERVICE_ID = 'service_0vy2lys';
 const EMAILJS_TEMPLATE_ID = 'template_mk7zkaq';
+const EMAILJS_CONFIRMATION_TEMPLATE_ID = 'template_k1azkgi'; // Create this template in EmailJS
 const EMAILJS_PUBLIC_KEY = 'Z_wc6Yqk8nwSUqwO_';
 
 export default function BookingForm() {
@@ -85,6 +86,27 @@ export default function BookingForm() {
             );
 
             if (response.status === 200) {
+                // Send confirmation email to user only if email is present
+                if (formData.email && formData.email.includes('@')) {
+                    const confirmationParams = {
+                        to_email: formData.email,
+                        to_name: formData.fullName,
+                        service: formData.service,
+                        category: formData.category,
+                        booking_date: formData.bookingDate
+                    };
+                    try {
+                        await emailjs.send(
+                            EMAILJS_SERVICE_ID,
+                            EMAILJS_CONFIRMATION_TEMPLATE_ID,
+                            confirmationParams
+                        );
+                    } catch (err) {
+                        console.error('Error sending confirmation email:', err);
+                    }
+                } else {
+                    console.error('No valid recipient email for confirmation. Skipping confirmation email.');
+                }
                 setMessage({
                     type: 'success',
                     text: 'Booking request submitted successfully! We\'ll be in touch soon.'
@@ -98,6 +120,8 @@ export default function BookingForm() {
                     category: SERVICES[SERVICE_NAMES[0] as keyof typeof SERVICES][0],
                     details: ''
                 });
+                // Clear the message after 4 seconds
+                setTimeout(() => setMessage(null), 4000);
             }
         } catch (error) {
             console.error('Error sending email:', error);
