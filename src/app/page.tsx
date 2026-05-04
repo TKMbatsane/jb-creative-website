@@ -1,21 +1,21 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
 import Gallery from '../components/Gallery';
 import ServiceCard from '../components/ServiceCard';
 import CounterSection from '../components/CounterSection';
-import BookingForm from '../components/BookingForm';
-
-
+import BookingModal from '../components/BookingModal';
 
 export default function Home() {
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
     return (
         <div className="min-h-screen text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
             <NavBar />
 
-            <Hero />
+            <Hero onOpenBooking={() => setIsBookingModalOpen(true)} />
             <CounterSection />
             <Gallery />
 
@@ -60,10 +60,17 @@ export default function Home() {
 
             <section id="contact" className="py-20 px-6 text-black dark:text-white bg-[#FFFAFA] dark:bg-[#000000]">
                 <div className="max-w-2xl mx-auto">
-                    <h2 className="text-5xl font-bold mb-4 text-center">Book Your Session</h2>
-                    <p className="text-zinc-400 text-center text-lg mb-12">Ready to shine? Fill out the form below and we'll get in touch to confirm your booking.</p>
+                    <h2 className="text-5xl font-bold mb-4 text-center">Get In Touch</h2>
+                    <p className="text-zinc-400 text-center text-lg mb-12">Ready to book your session? Click the button below or reach out directly!</p>
 
-                    <BookingForm />
+                    <div className="flex justify-center mb-12">
+                        <button
+                            onClick={() => setIsBookingModalOpen(true)}
+                            className="bg-[#f2b949] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition"
+                        >
+                            Book a Session
+                        </button>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div>
@@ -93,7 +100,10 @@ export default function Home() {
                 </div>
             </section>
 
-
+            <BookingModal
+                isOpen={isBookingModalOpen}
+                onClose={() => setIsBookingModalOpen(false)}
+            />
         </div>
     );
 }

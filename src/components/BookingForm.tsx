@@ -17,7 +17,11 @@ const EMAILJS_TEMPLATE_ID = 'template_mk7zkaq';
 const EMAILJS_CONFIRMATION_TEMPLATE_ID = 'template_k1azkgi'; // Create this template in EmailJS
 const EMAILJS_PUBLIC_KEY = 'Z_wc6Yqk8nwSUqwO_';
 
-export default function BookingForm() {
+interface BookingFormProps {
+    onSubmitSuccess?: () => void;
+}
+
+export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -120,8 +124,13 @@ export default function BookingForm() {
                     category: SERVICES[SERVICE_NAMES[0] as keyof typeof SERVICES][0],
                     details: ''
                 });
-                // Clear the message after 4 seconds
-                setTimeout(() => setMessage(null), 4000);
+                // Clear the message after 4 seconds and close the modal if callback provided
+                setTimeout(() => {
+                    setMessage(null);
+                    if (onSubmitSuccess) {
+                        onSubmitSuccess();
+                    }
+                }, 4000);
             }
         } catch (error) {
             console.error('Error sending email:', error);
