@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 
-export default function Hero() {
+interface HeroProps {
+    onOpenBooking?: () => void;
+}
+
+export default function Hero({ onOpenBooking }: HeroProps) {
     return (
         <section className="relative min-h-screen flex items-center justify-center text-black dark:text-white overflow-hidden">
 
@@ -31,9 +35,12 @@ export default function Hero() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="#contact" className="bg-[#f2b949] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition">
+                    <button
+                        onClick={onOpenBooking}
+                        className="bg-[#f2b949] text-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition"
+                    >
                         Book a Session
-                    </Link>
+                    </button>
 
                     <Link href="#portfolio" className="border border-white px-8 py-4 rounded-lg font-semibold hover:border-[#636b2f] transition">
                         View Portfolio
