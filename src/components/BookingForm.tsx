@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
+import { format } from 'date-fns';
+import BookingCalendar from './BookingCalendar';
 
 const SERVICES = {
     'Weddings and Events': ['Wedding', 'Birthday party', 'Corporate event'],
@@ -26,7 +28,7 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
         fullName: '',
         email: '',
         phone: '',
-        bookingDate: '',
+        bookingDate: null as Date | null,
         service: SERVICE_NAMES[0],
         category: SERVICES[SERVICE_NAMES[0] as keyof typeof SERVICES][0],
         details: ''
@@ -41,6 +43,13 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
         emailjs.init(EMAILJS_PUBLIC_KEY);
         setIsEmailJSInitialized(true);
     }, []);
+
+    const handleDateChange = (date: Date | null) => {
+        setFormData(prev => ({
+            ...prev,
+            bookingDate: date
+        }));
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -65,9 +74,42 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
         setLoading(true);
         setMessage(null);
 
+        // Validate required fields
+        if (!formData.bookingDate) {
+            setMessage({
+                type: 'error',
+                text: 'Please select a booking date.'
+            });
+            setLoading(false);
+            return;
+        }
+
         try {
             if (!isEmailJSInitialized) {
                 throw new Error('EmailJS not initialized');
+            }
+
+            // Format date for API and email
+            const formattedDate = format(formData.bookingDate, 'yyyy-MM-dd');
+            const displayDate = format(formData.bookingDate, 'PPP'); // Human readable format
+
+            // First, create the booking via API
+            const bookingResponse = await fetch('/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    date: formattedDate,
+                    name: formData.fullName,
+                    email: formData.email,
+                    service: formData.service
+                }),
+            });
+
+            if (!bookingResponse.ok) {
+                const errorData = await bookingResponse.json();
+                throw new Error(errorData.error || 'Failed to create booking');
             }
 
             // Prepare template parameters
@@ -75,7 +117,7 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
                 from_name: formData.fullName,
                 from_email: formData.email,
                 from_phone: formData.phone,
-                booking_date: formData.bookingDate,
+                booking_date: displayDate,
                 service: formData.service,
                 category: formData.category,
                 details: formData.details || 'No additional details provided',
@@ -97,7 +139,7 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
                         to_name: formData.fullName,
                         service: formData.service,
                         category: formData.category,
-                        booking_date: formData.bookingDate
+                        booking_date: displayDate
                     };
                     try {
                         await emailjs.send(
@@ -119,7 +161,7 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
                     fullName: '',
                     email: '',
                     phone: '',
-                    bookingDate: '',
+                    bookingDate: null,
                     service: SERVICE_NAMES[0],
                     category: SERVICES[SERVICE_NAMES[0] as keyof typeof SERVICES][0],
                     details: ''
@@ -198,17 +240,12 @@ export default function BookingForm({ onSubmitSuccess }: BookingFormProps) {
 
             {/* Booking Date */}
             <div>
-                <label htmlFor="bookingDate" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2">
                     Preferred Booking Date *
                 </label>
-                <input
-                    type="date"
-                    id="bookingDate"
-                    name="bookingDate"
-                    value={formData.bookingDate}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400 transition"
+                <BookingCalendar
+                    selectedDate={formData.bookingDate}
+                    onDateChange={handleDateChange}
                 />
             </div>
 
